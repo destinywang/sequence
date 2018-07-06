@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 public class TimeUtils {
     protected static final Logger log = LoggerFactory.getLogger(TimeUtils.class);
 
-    public static final long EPOCH = 1420041600000L;
+    /**
+     * 2018-01-01 00:00:00
+     */
+    public static final long EPOCH = 1514736000000L;
 
 
     public static void validateTimestamp(long lastTimestamp, long timestamp) {

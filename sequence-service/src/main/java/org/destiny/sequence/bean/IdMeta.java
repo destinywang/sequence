@@ -2,13 +2,13 @@ package org.destiny.sequence.bean;
 
 /**
  * @author 王康
- * hzwangkang1@corp.netease.com
+ * destinywk@163.com
  * ------------------------------------------------------------------
  * <p>
  *     id 的字节信息封装
  * </p>
  * ------------------------------------------------------------------
- * Corpright 2018 Netease, Inc. All rights reserved.
+ * Corpright 2018 Destiny, Org. All rights reserved.
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  * @version JDK 1.8.0_101
  * @since 2018/7/4 19:59
@@ -16,15 +16,15 @@ package org.destiny.sequence.bean;
 public class IdMeta {
 
     private byte machineBits;       // 机器编号
-    private byte seqBits;           // 序号
+    private byte seqBitsMask;           // 序号
     private byte timeBits;          // 时间
     private byte genMethodBits;     // 生成方式
     private byte typeBits;          // 类型
     private byte versionBits;       // 版本
 
-    public IdMeta(byte machineBits, byte seqBits, byte timeBits, byte genMethodBits, byte typeBits, byte versionBits) {
+    public IdMeta(byte machineBits, byte seqBitsMask, byte timeBits, byte genMethodBits, byte typeBits, byte versionBits) {
         this.machineBits = machineBits;
-        this.seqBits = seqBits;
+        this.seqBitsMask = seqBitsMask;
         this.timeBits = timeBits;
         this.genMethodBits = genMethodBits;
         this.typeBits = typeBits;
@@ -39,12 +39,12 @@ public class IdMeta {
         this.machineBits = machineBits;
     }
 
-    public byte getSeqBits() {
-        return seqBits;
+    public byte getSeqBitsMask() {
+        return seqBitsMask;
     }
 
-    public void setSeqBits(byte seqBits) {
-        this.seqBits = seqBits;
+    public void setSeqBitsMask(byte seqBitsMask) {
+        this.seqBitsMask = seqBitsMask;
     }
 
     public byte getTimeBits() {

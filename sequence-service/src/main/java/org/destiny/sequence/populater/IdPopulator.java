@@ -7,7 +7,7 @@ import java.util.Timer;
 
 /**
  * @author 王康
- * hzwangkang1@corp.netease.com
+ * destinywk@163.com
  * ------------------------------------------------------------------
  * <p>
  *     需要计算构成唯一 ID 的格式中的另外两个变量
@@ -16,7 +16,7 @@ import java.util.Timer;
  *     而二者的生成方式是多种多样的, 将生成逻辑封装在子类中
  * </p>
  * ------------------------------------------------------------------
- * Corpright 2018 Netease, Inc. All rights reserved.
+ * Corpright 2018 Destiny, Org. All rights reserved.
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  * @version JDK 1.8.0_101
  * @since 2018/7/4 22:27
