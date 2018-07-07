@@ -101,8 +101,8 @@ ntpdate -u pool.ntp.orgpool.ntp.org
 2. 每 4 年一次同步闰秒会不会影响 ID 产生?
     1. 调快 1 秒的情况下, 不影响 ID 产生, 所以调整的 1 秒内没有 ID 产生.
 
-# 2. 根据设计实现多场景的发号器
-## 2.1 项目结构
+# 3. 根据设计实现多场景的发号器
+## 3.1 项目结构
 ![](http://oetw0yrii.bkt.clouddn.com/18-7-3/4651141.jpg)
 
 - sequence-parent: 父项目
@@ -118,7 +118,7 @@ ntpdate -u pool.ntp.orgpool.ntp.org
 - sequence-parent/make-release.sh: 意见打包发号器
 - sequence-parent/pom.xml
 
-## 2.2 服务接口定义
+## 3.2 服务接口定义
 ```java
 public interface IdService {
 
@@ -169,7 +169,7 @@ public interface IdService {
 }
 ```
 
-## 2.3 时间和序号的生成方式
+## 3.3 时间和序号的生成方式
 
 一个完整的 sequence 序号, 包含:
 1. 机器 ID
@@ -187,7 +187,7 @@ public interface IdService {
 
 ![](http://oetw0yrii.bkt.clouddn.com/18-7-6/99630784.jpg)
 
-## 2.4 机器 ID 的生成
+## 3.4 机器 ID 的生成
 
 - DbMachineIdProvider: 通过在数据库配置机器 ID 来实现, 适用于任何情况, 但是使用起来比较麻烦
 - IpConfigurableMachineIdProvider: 适用于线上生产环境, 通过所有 IP 的机器列表为每个机器生成一个唯一的机器 ID
