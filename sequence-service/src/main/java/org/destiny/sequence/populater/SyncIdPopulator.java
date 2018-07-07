@@ -5,8 +5,6 @@ import org.destiny.sequence.bean.IdType;
 import org.destiny.sequence.model.Id;
 import org.destiny.sequence.util.TimeUtils;
 
-import java.util.Timer;
-
 /**
  * @author 王康
  * destinywk@163.com
@@ -36,7 +34,7 @@ public class SyncIdPopulator implements IdPopulator {
 
         if (timestamp == lastTimestamp) {
             sequence ++;
-            sequence &= idMeta.getSeqBitsMask();
+            sequence &= idMeta.getSeqBitsStartPos();
             if (sequence == 0) {
                 timestamp = TimeUtils.tillNextTimeUnit(lastTimestamp, IdType.parse(id.getType()));
             }

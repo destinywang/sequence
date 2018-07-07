@@ -50,7 +50,7 @@ public class LockIdPopulator implements IdPopulator {
                 // 如果当前时间等于上个时间, 则自增 sequence 序号
                 sequence ++;
                 // 当前序号做逻辑与操作, 判断是否越界
-                sequence &= idMeta.getSeqBitsMask();
+                sequence &= idMeta.getSeqBitsStartPos();
                 // 如果越界, 阻塞到下一个时间单位
                 if (sequence == 0) {
                     timestamp = TimeUtils.tillNextTimeUnit(lastTimestamp, IdType.parse(id.getType()));

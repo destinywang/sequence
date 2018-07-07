@@ -7,7 +7,10 @@ import org.destiny.sequence.model.Id;
  * @author 王康
  * destinywk@163.com
  * ------------------------------------------------------------------
- * <p></p>
+ * <p>
+ *     Id 元数据 与 Id 长整型 的相互转换
+ *     在主流程的 ID 元数据对象中设置了 ID 的各个属性之后, 通过本接口进行转换
+ * </p>
  * ------------------------------------------------------------------
  * Corpright 2018 Destiny, Org. All rights reserved.
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
@@ -16,7 +19,7 @@ import org.destiny.sequence.model.Id;
  */
 public interface IdConverter {
 
-    long convert(Id id, IdMeta idMeta);
+    long convert(Id id);
 
-    Id convert(long id, IdMeta idMeta);
+    Id convert(long id);
 }

@@ -58,7 +58,7 @@ public class AtomicIdPopulator implements IdPopulator {
 
             if (timestamp == oldVar.lastTimestamp) {
                 sequence ++;
-                sequence &= idMeta.getSeqBitsMask();
+                sequence &= idMeta.getSeqBitsStartPos();
                 if (sequence == 0) {
                     timestamp = TimeUtils.tillNextTimeUnit(oldVar.lastTimestamp, IdType.parse(id.getType()));
                 }

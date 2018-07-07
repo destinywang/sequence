@@ -169,4 +169,29 @@ public interface IdService {
 }
 ```
 
+## 2.3 时间和序号的生成方式
+
+一个完整的 sequence 序号, 包含:
+1. 机器 ID
+2. 序列号
+3. 时间
+4. 生成方式
+5. 类型
+6. 版本
+
+其中 `序列号` 和 `时间` 不同于其他几项:
+- 序列号在该项目中有多种生成方式, 如 `Lock 锁`, `synchronize 锁`, `CAS` 等
+- 时间同样有多种格式, 包括 秒 和 毫秒
+
+因此在生成 sequence 序列号时, 将这两个字段的生成逻辑独立出来, 有了如下设计
+
 ![](http://oetw0yrii.bkt.clouddn.com/18-7-6/99630784.jpg)
+
+## 2.4 机器 ID 的生成
+
+- DbMachineIdProvider: 通过在数据库配置机器 ID 来实现, 适用于任何情况, 但是使用起来比较麻烦
+- IpConfigurableMachineIdProvider: 适用于线上生产环境, 通过所有 IP 的机器列表为每个机器生成一个唯一的机器 ID
+- PropertyMachineIdProvider: 基于配置属性实现, 适用于测试环境
+
+![](http://oetw0yrii.bkt.clouddn.com/18-7-7/33459177.jpg)
+
