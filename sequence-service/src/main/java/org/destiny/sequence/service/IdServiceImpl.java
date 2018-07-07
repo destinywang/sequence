@@ -1,7 +1,10 @@
 package org.destiny.sequence.service;
 
 import org.destiny.sequence.model.Id;
+import org.destiny.sequence.populater.AtomicIdPopulator;
 import org.destiny.sequence.populater.IdPopulator;
+import org.destiny.sequence.populater.LockIdPopulator;
+import org.destiny.sequence.populater.SyncIdPopulator;
 import org.destiny.sequence.util.CommonUtils;
 
 import java.util.Date;
@@ -28,10 +31,6 @@ public class IdServiceImpl extends AbstractIdServiceImpl {
      */
     private IdPopulator idPopulator;
 
-    public IdServiceImpl() {
-        super();
-
-    }
 
     /**
      * 模板方法
@@ -41,7 +40,7 @@ public class IdServiceImpl extends AbstractIdServiceImpl {
      */
     @Override
     protected void populateId(Id id) {
-
+        idPopulator.populateId(id, idMeta);
     }
 
     /**
@@ -94,12 +93,20 @@ public class IdServiceImpl extends AbstractIdServiceImpl {
         return null;
     }
 
-    private void initPopulator() {
+
+    /**
+     * 选择 IdPopulator
+     * 默认情况下为 LockIdPopulator
+     */
+    public void initPopulator() {
         if (CommonUtils.isPropKeyOn(SYNC_LOCK_IMPL_KEY)) {
-            logger.info("The SyncIdPopulator is used");
-
+            idPopulator = new SyncIdPopulator();
         } else if (CommonUtils.isPropKeyOn(ATOMIC_IMPL_KEY)) {
-
+            idPopulator = new AtomicIdPopulator();
+        } else {
+            idPopulator = new LockIdPopulator();
         }
     }
+
+
 }

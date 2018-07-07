@@ -32,20 +32,31 @@ public class LockIdPopulator implements IdPopulator {
      */
     private Lock lock = new ReentrantLock();
 
+    /**
+     * 首先查看
+     * @param id
+     * @param idMeta
+     */
     @Override
     public void populateId(Id id, IdMeta idMeta) {
         lock.lock();
         try {
+            // 生成当前时间
             long timestamp = TimeUtils.genTime(IdType.parse(id.getType()));
+            // 如果当前时间小于等于上个时间, 报错
             TimeUtils.validateTimestamp(lastTimestamp, timestamp);
 
             if (timestamp == lastTimestamp) {
+                // 如果当前时间等于上个时间, 则自增 sequence 序号
                 sequence ++;
+                // 当前序号做逻辑与操作, 判断是否越界
                 sequence &= idMeta.getSeqBitsMask();
+                // 如果越界, 阻塞到下一个时间单位
                 if (sequence == 0) {
                     timestamp = TimeUtils.tillNextTimeUnit(lastTimestamp, IdType.parse(id.getType()));
                 }
             } else {
+                // 如果不在同一个时间, 则将序号清零
                 lastTimestamp = timestamp;
                 sequence = 0;
             }

@@ -43,10 +43,18 @@ public class TimeUtils {
         return timestamp;
     }
 
+    /**
+     * 以 2018-01-01 00:00:00 作为开始
+     * 根据 idType 的不同返回不同格式的时间
+     *
+     *
+     * @param idType
+     * @return
+     */
     public static long genTime(final IdType idType) {
-        if (idType == IdType.MILLISECONDS) {
+        if (idType == IdType.SECONDS) {
             return (System.currentTimeMillis() - TimeUtils.EPOCH) / 1000;
-        } else if (idType == IdType.SECONDS) {
+        } else if (idType == IdType.MILLISECONDS) {
             return (System.currentTimeMillis() - TimeUtils.EPOCH);
         }
         return (System.currentTimeMillis() - TimeUtils.EPOCH) / 1000;
